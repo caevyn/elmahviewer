@@ -1,0 +1,12 @@
+﻿td
+{
+    white-space: nowrap;
+}
+td.error-col {
+    white-space: normal;
+}
+.controls-container {
+    margin: 10px;
+}
+
+

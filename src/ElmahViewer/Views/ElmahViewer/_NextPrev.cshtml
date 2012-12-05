@@ -1,0 +1,6 @@
+﻿@model ElmahViewer.Models.ErrorListViewModel
+
+<ul class="pager">
+    <li class="previous @(Model.PageIndex > 0 ? "" : "disabled")">@Html.ActionLink("Prev","Index", new{Id=Model.ApplicationName, Index=Model.PageIndex <= 0 ? 0 : Model.PageIndex - 1, Size=Model.PageSize})</li>
+    <li class='next @(Model.HasMorePages ? "" : "disabled")'>@Html.ActionLink("Next","Index", new{Id=Model.ApplicationName, Index=Model.PageIndex + 1, Size=Model.PageSize})</li>
+</ul>

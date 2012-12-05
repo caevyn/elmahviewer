@@ -1,0 +1,13 @@
+﻿@using ElmahViewer
+@model ElmahViewer.Models.ApplicationListModel
+<div class="btn-group">
+    <a  href="@Url.Action("Index", new { applicationId =  Url.ForwardSlashEncode(Model.CurrentApplication) })" class="btn"><i class="icon-refresh"></i> @Model.CurrentApplication</a>
+    <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        @foreach (var app in Model.Applications)
+        {
+            var escaped = Url.ForwardSlashEncode(app);
+            <li><a href="@Url.Action("Index", new { applicationId = escaped })"><i class="icon-arrow-right"></i>@app</a></li>
+        }   
+    </ul>
+</div>

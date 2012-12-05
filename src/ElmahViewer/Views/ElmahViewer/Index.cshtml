@@ -1,0 +1,80 @@
+﻿@using ElmahViewer
+@using ElmahViewer.Models
+@model ErrorListViewModel
+
+<h4 id="PageTitle" class="controls-container">
+     Error Log for @Html.Partial("_Application", Model.AllApplications)
+ </h4>
+        
+@if (Model.Errors.Any())
+{
+    <div class="controls-container">
+        <div class="pagination pagination-mini">
+        <ul>
+            <li><span>Page size</span></li>
+            @{
+                foreach (var size in Model.Sizes)
+                {
+                    var cssClass = size == Model.PageSize ? "active" : "";
+                    <li class="@cssClass">@Html.ActionLink(size.ToString("N0"), "Index", new{ApplicationId = Model.ApplicationName, Size = size, Index = 0})</li>
+                }
+            }
+        </ul>
+    </div>
+        <p>@string.Format("Errors {0} to {1} of total {2} (page {3} of {4}).",
+                      Model.FirstErrorNumber, Model.LastErrorNumber, Model.Count, Model.PageIndex + 1, Model.TotalPages)
+    </p>
+        @Html.Partial("_NextPrev", Model)
+    </div>
+    <table id="ErrorLog" class="table table-condensed table-striped table-bordered table-hover">
+        <tr>
+            <th>Host</th>
+            <th>Code</th>
+            <th>Type</th>
+            <th>Error</th>
+            <th>User</th>
+            <th>When</th>
+        </tr>
+              
+    @foreach (var error in Model.Errors)
+    {
+        <tr>
+            <td>@error.HostName</td>
+            <td>
+                <span title="@error.StatusDescription">@error.StatusCode</span> 
+            </td>
+            <td>
+                <span title="@error.Type">@error.HumaneType</span>
+            </td>
+            <td class="error-col"><span>@error.Message</span> 
+                @Html.ActionLink("Details...", "Index" ,new { ApplicationId = Url.ForwardSlashEncode(Model.ApplicationName), ErrorId = error.Id })
+            </td>
+            <td>@error.User</td>
+            <td>
+                <abbr title="@error.Iso8601Time">@error.When</abbr>
+            </td>
+        </tr>
+    }
+    </table>
+    <div class="controls-container">
+        @Html.Partial("_NextPrev", Model)
+    </div>
+}
+else 
+{
+    <div class="controls-container">
+    @if(Model.PageIndex >= Model.TotalPages && Model.Count > 0)
+    {
+        @Html.ActionLink("Back to first page", "Index", new{Id = Model.ApplicationName, Size = Model.PageSize, Index = 0})
+    }
+    else if(string.IsNullOrEmpty(Model.ApplicationName))
+    {
+        <p>Select an application.</p>
+    }
+    else
+    {
+        <p>No errors found.</p>
+    }
+    </div>
+}
+
