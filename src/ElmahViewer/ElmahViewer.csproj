@@ -15,7 +15,7 @@
     <AssemblyName>ElmahViewer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -173,6 +173,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\ElmahViewer\Details.cshtml" />
     <Content Include="Views\ElmahViewer\_Application.cshtml" />
+    <Content Include="Views\ElmahViewer\_DetailsTable.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -208,7 +209,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>11962</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/ElmahViewer</IISUrl>
+          <IISUrl>http://localhost:11962/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

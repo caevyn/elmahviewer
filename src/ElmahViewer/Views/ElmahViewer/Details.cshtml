@@ -15,23 +15,8 @@
 
     <p id="ErrorLogTime">@string.Format(@"Logged on {0} at {1}", error.Time.ToLongDateString(), error.Time.ToLongTimeString())</p>
 </div>
-@if(error.ServerVariables.Count > 0)
-{
-    <div id="ServerVariables">
-        <table class="table table-condensed table-striped table-bordered">
-            <tr ><th colspan="2">Server Variables</th></tr>
-            <tr>
-                <th>Name</th>
-                <th>Value</th>
-            </tr>
-    
-            @for (int i = 0; i < error.ServerVariables.Count; i++)
-            {
-                <tr>
-                    <td>@error.ServerVariables.GetKey(i)</td>
-                    <td>@error.ServerVariables.Get(i)</td>
-                </tr>
-            }
-        </table>
-    </div>
-}
+@Html.Partial("_DetailsTable", new { Name = "Server Variables", Collection = error.ServerVariables });
+@Html.Partial("_DetailsTable", new { Name = "Form", Collection = error.Form });
+@Html.Partial("_DetailsTable", new { Name = "Query String", Collection = error.QueryString });
+@Html.Partial("_DetailsTable", new { Name = "Cookies", Collection = error.Cookies});
+
