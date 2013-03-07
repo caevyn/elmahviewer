@@ -15,8 +15,8 @@
 
     <p id="ErrorLogTime">@string.Format(@"Logged on {0} at {1}", error.Time.ToLongDateString(), error.Time.ToLongTimeString())</p>
 </div>
-@Html.Partial("_DetailsTable", new { Name = "Server Variables", Collection = error.ServerVariables });
-@Html.Partial("_DetailsTable", new { Name = "Form", Collection = error.Form });
-@Html.Partial("_DetailsTable", new { Name = "Query String", Collection = error.QueryString });
-@Html.Partial("_DetailsTable", new { Name = "Cookies", Collection = error.Cookies});
+@Html.Partial("_DetailsTable", new { Name = "Server Variables", Collection = error.ServerVariables })
+@Html.Partial("_DetailsTable", new { Name = "Form", Collection = error.Form })
+@Html.Partial("_DetailsTable", new { Name = "Query String", Collection = error.QueryString })
+@Html.Partial("_DetailsTable", new { Name = "Cookies", Collection = error.Cookies})
 
