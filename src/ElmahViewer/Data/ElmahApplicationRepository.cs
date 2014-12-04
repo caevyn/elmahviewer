@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ElmahViewer.Data
@@ -22,8 +23,8 @@ namespace ElmahViewer.Data
             }
             var result = Massive.DB.Current.Query("Select Distinct [Application] FROM ELMAH_Error");
             var expandos = result.Cast<IDictionary<string, object>>();
-            appNames = expandos.SelectMany(x => x.Values).Cast<string>();
-            _cache.Insert(CacheKey, appNames);
+            appNames = expandos.SelectMany(x => x.Values).Cast<string>().OrderBy(x=>x);
+            _cache.Insert(CacheKey, appNames, DateTime.Now.AddDays(1));
             return appNames;
         }
     }
